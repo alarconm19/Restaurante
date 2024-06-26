@@ -4,16 +4,13 @@ using System.Linq;
 using UnityEngine;
 
 [Serializable]
-public class GridData : ISerializationCallbackReceiver
+public class GridData //: ISerializationCallbackReceiver
 {
     [NonSerialized]
     public Dictionary<Vector3Int, PlacementData> PlacedObjects = new();
 
     [SerializeField]
-    private List<Vector3Int> placedObjectKeys = new();
-
-    [SerializeField]
-    private List<PlacementData> placedObjectValues = new();
+    public SerializableDictionary SerializableDictionary { get; set; } = new();
 
     public void AddObjectAt(Vector3Int gridPosition, Vector2Int objectSize, int id, int placedObjectIndex)
     {
@@ -63,25 +60,19 @@ public class GridData : ISerializationCallbackReceiver
         }
     }
 
-    public void OnBeforeSerialize()
+    public void SavePlacedObjects()
     {
-        placedObjectKeys.Clear();
-        placedObjectValues.Clear();
-
-        foreach (var kvp in PlacedObjects)
-        {
-            placedObjectKeys.Add(kvp.Key);
-            placedObjectValues.Add(kvp.Value);
-        }
+        SerializableDictionary.placedObjectVector3Ints = PlacedObjects.Keys.ToList();
+        SerializableDictionary.placedObjectPlacementDatas = PlacedObjects.Values.ToList();
     }
 
-    public void OnAfterDeserialize()
+    public void LoadPlacedObjects()
     {
-        PlacedObjects = new Dictionary<Vector3Int, PlacementData>();
+        PlacedObjects = new();
 
-        for (int i = 0; i < placedObjectKeys.Count; i++)
+        for (int i = 0; i < SerializableDictionary.placedObjectVector3Ints.Count; i++)
         {
-            PlacedObjects.Add(placedObjectKeys[i], placedObjectValues[i]);
+            PlacedObjects.Add(SerializableDictionary.placedObjectVector3Ints[i], SerializableDictionary.placedObjectPlacementDatas[i]);
         }
     }
 }
@@ -89,16 +80,18 @@ public class GridData : ISerializationCallbackReceiver
 [Serializable]
 public class PlacementData
 {
+    public int Id, PlacedObjectIndex;
     public List<Vector3Int> OccupiedPositions;
-
-    public int Id { get; private set; }
-
-    public int PlacedObjectIndex { get; private set; }
 
     public PlacementData(List<Vector3Int> occupiedPositions, int id, int placedObjectIndex)
     {
         OccupiedPositions = occupiedPositions;
         Id = id;
         PlacedObjectIndex = placedObjectIndex;
+    }
+
+    public override string ToString()
+    {
+        return $"Id: {Id}, PlacedObjectIndex: {PlacedObjectIndex}, OccupiedPositions: {string.Join(", ", OccupiedPositions)}";
     }
 }

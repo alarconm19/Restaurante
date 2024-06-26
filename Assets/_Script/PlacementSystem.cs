@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlacementSystem : MonoBehaviour
@@ -74,12 +75,6 @@ public class PlacementSystem : MonoBehaviour
        buildingState.OnAction(gridPosition);
     }
 
-    // private bool CheckPlacementValidity(Vector3Int gridPosition, int selectedObjectIndex)
-    // {
-    //     GridData selectedData = database.objectsData[selectedObjectIndex].ID == 0 ? floorData : furnitureData;
-    //     return selectedData.CanPlaceObjectAt(gridPosition, database.objectsData[selectedObjectIndex].Size);
-    // }
-
     private void StopPlacement()
     {
         if (buildingState == null)
@@ -109,16 +104,29 @@ public class PlacementSystem : MonoBehaviour
         }
     }
 
+    public int GetTablesCount()
+    {
+        return objectPlacer.placedObjectDataList.Where(pGB => pGB.prefabName == "TableParent" || pGB.prefabName == "BigBedParent").Count();
+    }
+
     public string ToJson()
     {
+        furnitureData.SavePlacedObjects();
+        floorData.SavePlacedObjects();
+
         var data = new PlacementSystemData
         {
             lastPosition = inputManager.GetLastPosition(),
             database = database.objectsData,
-            floorData = floorData,
-            furnitureData = furnitureData,
+            floorData = floorData.SerializableDictionary,
+            furnitureData = furnitureData.SerializableDictionary,
             objectPlacer = objectPlacer.placedObjectDataList,
         };
+
+        foreach (var furniture in furnitureData.PlacedObjects)
+        {
+            Debug.Log(furniture.Value);
+        }
 
         return JsonUtility.ToJson(data, true);
     }
@@ -129,24 +137,14 @@ public class PlacementSystem : MonoBehaviour
 
         inputManager.SetLastPosition(data.lastPosition);
         database.objectsData = data.database;
-        floorData = data.floorData;
-        furnitureData = data.furnitureData;
-        //objectPlacer.placedObjectDataList = data.objectPlacer;
-        //objectPlacer.LoadPlacedObjects();
 
-        foreach (var pos in floorData.PlacedObjects.Keys)
-        {
-            objectPlacer.PlaceObject(database.objectsData[0].Prefab, grid.CellToWorld(pos));
-        }
+        floorData.SerializableDictionary = data.floorData;
+        floorData.LoadPlacedObjects();
+        furnitureData.SerializableDictionary = data.furnitureData;
+        furnitureData.LoadPlacedObjects();
 
-        foreach (var pos in furnitureData.PlacedObjects.Keys)
-        {
-            var index = furnitureData.GetRepresentationIndex(pos);
-            objectPlacer.PlaceObject(database.objectsData[index].Prefab, grid.CellToWorld(pos));
-        }
-
-
-        Debug.Log("Data loaded successfully.");
+        objectPlacer.placedObjectDataList = data.objectPlacer;
+        objectPlacer.LoadPlacedObjects();
     }
 
     // Clase para contener los datos serializables de PlacementSystem
@@ -155,7 +153,7 @@ public class PlacementSystem : MonoBehaviour
     {
         public Vector3 lastPosition;
         public List<ObjectData> database;
-        public GridData floorData, furnitureData;
+        public SerializableDictionary floorData, furnitureData;
         public List<PlacedObjectData> objectPlacer;
 
         public PlacementSystemData()
