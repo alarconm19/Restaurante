@@ -10,11 +10,9 @@ public class MozosManager : MonoBehaviour
     public Button addButton, deleteButton;
     public Transform mozoContent;
     public PlacementSystem placementSystem;
-
     private List<Mozo> mozosList = new();
-
-    [SerializeField]
     private int mozoCount = 0;
+
 
     private void Start()
     {
@@ -30,9 +28,32 @@ public class MozosManager : MonoBehaviour
         mozosList.Add(newMozo);
 
         // Instanciar el prefab y actualizar el texto
-        GameObject newMozoGO = Instantiate(mozoPrefab, mozoContent);
+        _ = Instantiate(mozoPrefab, mozoContent);
 
-         // Obtener el número total de mesas
+        UpdateAsignacion();
+
+        mozoCount++;
+    }
+
+    public void EliminarUltimoMozo()
+    {
+        if (mozosList.Count > 0)
+        {
+            // Eliminar el último mozo de la lista
+            mozosList.RemoveAt(mozosList.Count - 1);
+            mozoCount--;
+
+            // Eliminar el último mozo del UI
+            Transform lastMozo = mozoContent.GetChild(mozoContent.childCount - 1);
+            Destroy(lastMozo.gameObject);
+
+            UpdateAsignacion();
+        }
+    }
+
+    public void UpdateAsignacion()
+    {
+        // Obtener el número total de mesas
         int mesasActuales = placementSystem.GetTablesCount();
 
         // Limpiar las asignaciones anteriores
@@ -41,10 +62,11 @@ public class MozosManager : MonoBehaviour
             mozo.mesasAsignadas.Clear();
         }
 
+        if (mozosList.Count() == 0) return;
         // Reasignar mesas de manera equitativa
         for (int i = 0; i < mesasActuales; i++)
         {
-            int mozoIndex = i % mozosList.Count;
+            int mozoIndex = i % mozosList.Count();
             mozosList[mozoIndex].mesasAsignadas.Add(i);
         }
 
@@ -69,7 +91,7 @@ public class MozosManager : MonoBehaviour
 
                 if (mesasAsignadasText != null)
                 {
-                    string mesasTexto = "Mesas: " + string.Join(" ", mozosList[i].mesasAsignadas.Select(m => " Mesa " + (m + 1) + " "));
+                    string mesasTexto = "Mesas: " + string.Join(" ", mozosList[i].mesasAsignadas.Select(m => "Mesa " + (m + 1)));
                     mesasAsignadasText.text = mesasTexto;
                 }
             }
@@ -78,25 +100,9 @@ public class MozosManager : MonoBehaviour
                 Debug.LogError("TextMeshProUGUI no encontrado en el prefab de mozo.");
             }
         }
-
-        mozoCount++;
-    }
-
-    public void EliminarUltimoMozo()
-    {
-        if (mozosList.Count > 0)
-        {
-            // Eliminar el último mozo de la lista
-            mozosList.RemoveAt(mozosList.Count - 1);
-
-            // Eliminar el último mozo del UI
-            Transform lastMozo = mozoContent.GetChild(mozoContent.childCount - 1);
-            Destroy(lastMozo.gameObject);
-
-            mozoCount--;
-        }
     }
 }
+
 
 public class Mozo
 {

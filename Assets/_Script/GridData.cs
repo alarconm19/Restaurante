@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 
 [Serializable]
-public class GridData //: ISerializationCallbackReceiver
+public class GridData
 {
     [NonSerialized]
     public Dictionary<Vector3Int, PlacementData> PlacedObjects = new();

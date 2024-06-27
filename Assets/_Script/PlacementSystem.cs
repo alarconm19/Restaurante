@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using static IBuildingState;
 
@@ -85,7 +86,7 @@ public class PlacementSystem : MonoBehaviour
         buildingState.OnAction(gridPosition);
     }
 
-    private void StopPlacement()
+    public void StopPlacement()
     {
         if (buildingState == null)
             return;
@@ -116,7 +117,7 @@ public class PlacementSystem : MonoBehaviour
 
     public int GetTablesCount()
     {
-        return objectPlacer.placedObjectDataList.Where(pGB => pGB.prefabName == "TableParent" || pGB.prefabName == "BigBedParent").Count();
+        return objectPlacer.placedObjectDataList == null ? 0 : objectPlacer.placedObjectDataList.Where(pGB => pGB.prefabName == "TableParent" || pGB.prefabName == "BigBedParent").Count();
     }
 
     public string ToJson()

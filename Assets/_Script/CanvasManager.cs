@@ -2,10 +2,27 @@ using UnityEngine;
 
 public class CanvasManager : MonoBehaviour
 {
-    public Canvas UIEditor, UIPreview;
+    public Canvas UIEditor, UIPreview, Menu;
     public GameObject gridVisualization, BuildingSystem;
 
-    // Método para activar el Canvas
+    public void MenuAEdicion()
+    {
+        Menu.gameObject.SetActive(false);
+        UIEditor.gameObject.SetActive(true);
+        UIPreview.gameObject.SetActive(false);
+        BuildingSystem.SetActive(true);
+        gridVisualization.SetActive(true);
+    }
+
+    public void VolverMenu()
+    {
+        Menu.gameObject.SetActive(true);
+        UIEditor.gameObject.SetActive(false);
+        UIPreview.gameObject.SetActive(false);
+        BuildingSystem.SetActive(false);
+        gridVisualization.SetActive(false);
+    }
+
     public void CambiarModo()
     {
         if (UIEditor.gameObject.activeSelf)
@@ -13,6 +30,7 @@ public class CanvasManager : MonoBehaviour
             UIEditor.gameObject.SetActive(false);
             UIPreview.gameObject.SetActive(true);
             BuildingSystem.SetActive(false);
+            BuildingSystem.GetComponentInChildren<PlacementSystem>().StopPlacement();
             gridVisualization.SetActive(false);
         }
         else
@@ -22,5 +40,10 @@ public class CanvasManager : MonoBehaviour
             BuildingSystem.SetActive(true);
             gridVisualization.SetActive(true);
         }
+    }
+
+    public void Salir()
+    {
+        Application.Quit();
     }
 }
