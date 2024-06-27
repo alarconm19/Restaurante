@@ -8,10 +8,17 @@ public class ObjectColorChanger : MonoBehaviour
 
     private void Start()
     {
-        objectRenderer = GetComponentInChildren<Renderer>();
-        if (objectRenderer == null)
+        var planoTransform = transform.Find("Plane");
+        if (planoTransform != null)
         {
-            Debug.LogError("Renderer component not found on this game object.");
+            if (!TryGetComponent(out objectRenderer))
+            {
+                Debug.LogError("Renderer component not found on this game object.");
+            }
+        }
+        else
+        {
+            Debug.LogError("GameObject 'plano' not found.");
         }
     }
 
@@ -33,25 +40,39 @@ public class ObjectColorChanger : MonoBehaviour
 
     private void ChangeColor()
     {
-        if (objectRenderer == null) return;
+        // Asegurar que el material soporte transparencia
+        SetMaterialTransparency(objectRenderer);
 
+        Color newColor;
         switch (clickCount)
         {
             case 1:
-                objectRenderer.material.color = Color.green;
+                newColor = new Color(0, 1, 0, 0.5f); // Verde con transparencia
                 break;
             case 2:
-                objectRenderer.material.color = Color.red;
+                newColor = new Color(1, 0, 0, 0.5f); // Rojo con transparencia
                 break;
             case 3:
-                objectRenderer.material.color = Color.yellow;
+                newColor = new Color(1, 1, 0, 0.5f); // Amarillo con transparencia
                 clickCount = 0; // Reiniciar el contador de clics
                 break;
-
-            // default:
-            //     objectRenderer.material.color = Color.white; // Set a default color, such as white
-            //     clickCount = 0; // Reiniciar el contador de clics
-            //     break;
+            default:
+                newColor = objectRenderer.material.color; // Mantener el color actual
+                break;
         }
+        objectRenderer.material.color = newColor;
+    }
+
+    private void SetMaterialTransparency(Renderer renderer)
+    {
+        // Configurar el material para usar transparencia
+        renderer.material.SetOverrideTag("RenderType", "Transparent");
+        renderer.material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+        renderer.material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+        renderer.material.SetInt("_ZWrite", 0);
+        renderer.material.DisableKeyword("_ALPHATEST_ON");
+        renderer.material.EnableKeyword("_ALPHABLEND_ON");
+        renderer.material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+        renderer.material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Transparent;
     }
 }

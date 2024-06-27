@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 [Serializable]
@@ -11,29 +12,65 @@ public class ObjectPlacer : MonoBehaviour
     // Lista de datos serializables
     public List<PlacedObjectData> placedObjectDataList = new();
 
+    int contMesas = 1;
+
     public int PlaceObject(GameObject prefab, Vector3 position)
     {
         GameObject newObject = Instantiate(prefab);
         newObject.transform.position = position;
 
-        // Asegurarse de que el objeto tiene un Renderer
-        Renderer renderer = newObject.GetComponent<Renderer>();
-        if (renderer == null)
-        {
-            renderer = newObject.AddComponent<Renderer>();
-        }
-
-        // Agregar el componente ObjectColorChanger
-        ObjectColorChanger colorChanger = newObject.GetComponent<ObjectColorChanger>();
-        if (colorChanger == null)
-        {
-            newObject.AddComponent<ObjectColorChanger>();
-        }
-
         placedGameObjects.Add(newObject);
 
         // Guardar los datos del objeto colocado
         placedObjectDataList.Add(new PlacedObjectData(prefab.name, position));
+
+        if(prefab.name.Contains("TableRectangularParentV2") || prefab.name.Contains("RoundTableParentV2"))
+        {
+            // Buscar el objeto "plano" y obtener su Renderer
+            var planoTransform = newObject.transform.Find("Plane");
+            if (planoTransform != null)
+            {
+                // Asegurarse de que el objeto tiene un Renderer
+                if (!newObject.TryGetComponent<Renderer>(out _))
+                {
+                    newObject.AddComponent<Renderer>();
+                }
+
+                // Agregar el componente ObjectColorChanger
+                if (!newObject.TryGetComponent<ObjectColorChanger>(out _))
+                {
+                    newObject.AddComponent<ObjectColorChanger>();
+                }
+
+                //_ = newObject.AddComponent<ObjectColorChanger>();
+            }
+            else
+            {
+                Debug.LogError("GameObject 'plano' not found.");
+            }
+
+
+            // Buscar el objeto "numero" dentro del prefab instanciado
+            var numeroTransform = newObject.transform.Find("Numero");
+            if (numeroTransform != null)
+            {
+                if (numeroTransform.TryGetComponent<TextMeshPro>(out var numeroText))
+                {
+                    // Aquí puedes modificar el texto del TextMeshProUGUI
+                    numeroText.text = contMesas.ToString();
+
+                    contMesas++;
+                }
+                else
+                {
+                    Debug.LogWarning("TextMeshProUGUI no encontrado en el objeto 'numero'");
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Objeto 'numero' no encontrado en el prefab");
+            }
+        }
 
         return placedGameObjects.Count - 1;
     }
@@ -43,21 +80,34 @@ public class ObjectPlacer : MonoBehaviour
         GameObject newObject = Instantiate(prefab);
         newObject.transform.position = position;
 
-        // Asegurarse de que el objeto tiene un Renderer
-        Renderer renderer = newObject.GetComponent<Renderer>();
-        if (renderer == null)
-        {
-            renderer = newObject.AddComponent<Renderer>();
-        }
-
-        // Agregar el componente ObjectColorChanger
-        ObjectColorChanger colorChanger = newObject.GetComponent<ObjectColorChanger>();
-        if (colorChanger == null)
-        {
-            newObject.AddComponent<ObjectColorChanger>();
-        }
-
         placedGameObjects.Add(newObject);
+
+        if(prefab.name.Contains("TableParentV2") || prefab.name.Contains("RoundTableParentV2"))
+        {
+            // Agregar el componente ObjectColorChanger y configurarlo
+            _ = newObject.AddComponent<ObjectColorChanger>();
+
+            // Buscar el objeto "numero" dentro del prefab instanciado
+            var numeroTransform = newObject.transform.Find("Numero");
+            if (numeroTransform != null)
+            {
+                if (numeroTransform.TryGetComponent<TextMeshPro>(out var numeroText))
+                {
+                    // Aquí puedes modificar el texto del TextMeshProUGUI
+                    numeroText.text = contMesas.ToString();
+
+                    contMesas++;
+                }
+                else
+                {
+                    Debug.LogWarning("TextMeshProUGUI no encontrado en el objeto 'numero'");
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Objeto 'numero' no encontrado en el prefab");
+            }
+        }
 
         return placedGameObjects.Count - 1;
     }
@@ -72,6 +122,8 @@ public class ObjectPlacer : MonoBehaviour
 
         // También remover los datos
         placedObjectDataList[gameObjectIndex] = null;
+
+        contMesas--;
     }
 
     public void LoadPlacedObjects()

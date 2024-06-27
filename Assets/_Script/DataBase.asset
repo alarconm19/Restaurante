@@ -21,15 +21,15 @@ MonoBehaviour:
   - <Name>k__BackingField: Chair
     <ID>k__BackingField: 1
     <Size>k__BackingField: {x: 1, y: 1}
-    <Prefab>k__BackingField: {fileID: 4428052050468720457, guid: e033e50487fb016449143cd70d837387,
+    <Prefab>k__BackingField: {fileID: 2142024142786584646, guid: f938edb980f63604895c2ad2e76dd0d8,
       type: 3}
-  - <Name>k__BackingField: Big Bed
+  - <Name>k__BackingField: Round Table
     <ID>k__BackingField: 2
     <Size>k__BackingField: {x: 2, y: 2}
     <Prefab>k__BackingField: {fileID: 3585068589338172364, guid: 556021eadd92f234db66c6a6526fcc54,
       type: 3}
-  - <Name>k__BackingField: Table
+  - <Name>k__BackingField: Rectangular Table
     <ID>k__BackingField: 3
     <Size>k__BackingField: {x: 2, y: 1}
-    <Prefab>k__BackingField: {fileID: 663644087088169671, guid: 619d45e11d79557419f1d8d4032fbfc7,
+    <Prefab>k__BackingField: {fileID: 538046924779337913, guid: 766f92014a07abf448b023a632dfd79c,
       type: 3}

@@ -117,7 +117,7 @@ public class PlacementSystem : MonoBehaviour
 
     public int GetTablesCount()
     {
-        return objectPlacer.placedObjectDataList == null ? 0 : objectPlacer.placedObjectDataList.Where(pGB => pGB.prefabName == "TableParent" || pGB.prefabName == "BigBedParent").Count();
+        return objectPlacer.placedObjectDataList == null ? 0 : objectPlacer.placedObjectDataList.Where(pGB => pGB.prefabName == "TableParentV2" || pGB.prefabName == "RoundTableParentV2").Count();
     }
 
     public string ToJson()
