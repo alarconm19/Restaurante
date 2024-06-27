@@ -49,6 +49,13 @@ public class PlacementState : IBuildingState
                                  index);
 
         previewSystem.UpdatePreviewPosition(grid.CellToWorld(gridPosition), placementValidity);
+
+        // Initialize object state and color
+        PlacementSystem placementSystem = GameObject.FindObjectOfType<PlacementSystem>();
+        if (placementSystem != null)
+        {
+            placementSystem.ChangeObjectState(index);
+        }
     }
 
     private bool CheckPlacementValidity(Vector3Int gridPosition, int selectedObjectIndex)

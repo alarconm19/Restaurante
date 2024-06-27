@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static IBuildingState;
 
 public class PlacementSystem : MonoBehaviour
 {
@@ -27,6 +28,8 @@ public class PlacementSystem : MonoBehaviour
     [SerializeField]
     private ObjectPlacer objectPlacer;
 
+    private Dictionary<int, ObjectState> objectStates = new();
+
     IBuildingState buildingState;
 
     private void Start()
@@ -34,6 +37,13 @@ public class PlacementSystem : MonoBehaviour
         StopPlacement();
         floorData = new();
         furnitureData = new();
+
+        // Initialize object states
+        for (int i = 0; i < objectPlacer.placedGameObjects.Count; i++)
+        {
+            objectStates[i] = ObjectState.Available;
+            SetObjectColor(objectPlacer.placedGameObjects[i], ObjectState.Available);
+        }
     }
 
     public void StartPlacement(int ID)
@@ -72,7 +82,7 @@ public class PlacementSystem : MonoBehaviour
         Vector3 mouseposition = inputManager.GetSelectedMapPosition();
         Vector3Int gridPosition = grid.WorldToCell(mouseposition);
 
-       buildingState.OnAction(gridPosition);
+        buildingState.OnAction(gridPosition);
     }
 
     private void StopPlacement()
@@ -145,6 +155,62 @@ public class PlacementSystem : MonoBehaviour
 
         objectPlacer.placedObjectDataList = data.objectPlacer;
         objectPlacer.LoadPlacedObjects();
+
+        // Restore object states and colors
+        for (int i = 0; i < objectPlacer.placedGameObjects.Count; i++)
+        {
+            if (i < objectPlacer.placedObjectDataList.Count)
+            {
+                objectStates[i] = ObjectState.Available; // Set the default state
+                SetObjectColor(objectPlacer.placedGameObjects[i], ObjectState.Available); // Set the default color
+            }
+        }
+    }
+
+    public void ChangeObjectState(int objectIndex)
+    {
+        if (objectStates.TryGetValue(objectIndex, out ObjectState currentState))
+        {
+            ObjectState newState = currentState switch
+            {
+                ObjectState.Available => ObjectState.Occupied,
+                ObjectState.Occupied => ObjectState.Reserved,
+                ObjectState.Reserved => ObjectState.Available,
+                _ => ObjectState.Available,
+            };
+
+            objectStates[objectIndex] = newState;
+            SetObjectColor(objectPlacer.placedGameObjects[objectIndex], newState);
+        }
+    }
+
+    private void SetObjectColor(GameObject obj, ObjectState state)
+    {
+        Renderer renderer = obj.GetComponent<Renderer>();
+        if (renderer != null)
+        {
+            Color color = state switch
+            {
+                ObjectState.Available => Color.green,
+                ObjectState.Occupied => Color.red,
+                ObjectState.Reserved => Color.yellow,
+                _ => Color.white,
+            };
+
+            renderer.material.color = color;
+        }
+    }
+
+    public int GetObjectIndexAt(Vector3Int gridPosition)
+    {
+        for (int i = 0; i < objectPlacer.placedGameObjects.Count; i++)
+        {
+            if (objectPlacer.placedGameObjects[i].transform.position == gridPosition)
+            {
+                return i;
+            }
+        }
+        return -1;
     }
 
     // Clase para contener los datos serializables de PlacementSystem

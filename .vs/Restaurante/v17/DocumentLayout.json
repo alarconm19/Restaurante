@@ -1,0 +1,139 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\mazza\\OneDrive\\Escritorio\\mozo\\Restaurante\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{826251A9-DD1B-155A-53EC-DC42A2181CC9}|Assembly-CSharp.csproj|c:\\users\\mazza\\onedrive\\escritorio\\mozo\\restaurante\\assets\\_script\\objectcolorchanger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{826251A9-DD1B-155A-53EC-DC42A2181CC9}|Assembly-CSharp.csproj|solutionrelative:assets\\_script\\objectcolorchanger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{826251A9-DD1B-155A-53EC-DC42A2181CC9}|Assembly-CSharp.csproj|C:\\Users\\mazza\\OneDrive\\Escritorio\\mozo\\Restaurante\\assets\\_script\\griddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{826251A9-DD1B-155A-53EC-DC42A2181CC9}|Assembly-CSharp.csproj|solutionrelative:assets\\_script\\griddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{826251A9-DD1B-155A-53EC-DC42A2181CC9}|Assembly-CSharp.csproj|C:\\Users\\mazza\\OneDrive\\Escritorio\\mozo\\Restaurante\\assets\\_script\\datapersistence\\saveloadmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{826251A9-DD1B-155A-53EC-DC42A2181CC9}|Assembly-CSharp.csproj|solutionrelative:assets\\_script\\datapersistence\\saveloadmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{826251A9-DD1B-155A-53EC-DC42A2181CC9}|Assembly-CSharp.csproj|C:\\Users\\mazza\\OneDrive\\Escritorio\\mozo\\Restaurante\\assets\\_script\\placementstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{826251A9-DD1B-155A-53EC-DC42A2181CC9}|Assembly-CSharp.csproj|solutionrelative:assets\\_script\\placementstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{826251A9-DD1B-155A-53EC-DC42A2181CC9}|Assembly-CSharp.csproj|C:\\Users\\mazza\\OneDrive\\Escritorio\\mozo\\Restaurante\\assets\\_script\\placementsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{826251A9-DD1B-155A-53EC-DC42A2181CC9}|Assembly-CSharp.csproj|solutionrelative:assets\\_script\\placementsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{826251A9-DD1B-155A-53EC-DC42A2181CC9}|Assembly-CSharp.csproj|c:\\users\\mazza\\onedrive\\escritorio\\mozo\\restaurante\\assets\\_script\\objectplacer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{826251A9-DD1B-155A-53EC-DC42A2181CC9}|Assembly-CSharp.csproj|solutionrelative:assets\\_script\\objectplacer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{826251A9-DD1B-155A-53EC-DC42A2181CC9}|Assembly-CSharp.csproj|C:\\Users\\mazza\\OneDrive\\Escritorio\\mozo\\Restaurante\\assets\\_script\\ibuildingstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{826251A9-DD1B-155A-53EC-DC42A2181CC9}|Assembly-CSharp.csproj|solutionrelative:assets\\_script\\ibuildingstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ObjectColorChanger.cs",
+              "DocumentMoniker": "C:\\Users\\mazza\\OneDrive\\Escritorio\\mozo\\Restaurante\\Assets\\_Script\\ObjectColorChanger.cs",
+              "RelativeDocumentMoniker": "Assets\\_Script\\ObjectColorChanger.cs",
+              "ToolTip": "C:\\Users\\mazza\\OneDrive\\Escritorio\\mozo\\Restaurante\\Assets\\_Script\\ObjectColorChanger.cs",
+              "RelativeToolTip": "Assets\\_Script\\ObjectColorChanger.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACsAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-27T00:37:54.847Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ObjectPlacer.cs",
+              "DocumentMoniker": "C:\\Users\\mazza\\OneDrive\\Escritorio\\mozo\\Restaurante\\Assets\\_Script\\ObjectPlacer.cs",
+              "RelativeDocumentMoniker": "Assets\\_Script\\ObjectPlacer.cs",
+              "ToolTip": "C:\\Users\\mazza\\OneDrive\\Escritorio\\mozo\\Restaurante\\Assets\\_Script\\ObjectPlacer.cs",
+              "RelativeToolTip": "Assets\\_Script\\ObjectPlacer.cs",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAAABoAAABBAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-27T00:21:38.185Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IBuildingState.cs",
+              "DocumentMoniker": "C:\\Users\\mazza\\OneDrive\\Escritorio\\mozo\\Restaurante\\Assets\\_Script\\IBuildingState.cs",
+              "RelativeDocumentMoniker": "Assets\\_Script\\IBuildingState.cs",
+              "ToolTip": "C:\\Users\\mazza\\OneDrive\\Escritorio\\mozo\\Restaurante\\Assets\\_Script\\IBuildingState.cs",
+              "RelativeToolTip": "Assets\\_Script\\IBuildingState.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-27T00:18:03.656Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PlacementSystem.cs",
+              "DocumentMoniker": "C:\\Users\\mazza\\OneDrive\\Escritorio\\mozo\\Restaurante\\Assets\\_Script\\PlacementSystem.cs",
+              "RelativeDocumentMoniker": "Assets\\_Script\\PlacementSystem.cs",
+              "ToolTip": "C:\\Users\\mazza\\OneDrive\\Escritorio\\mozo\\Restaurante\\Assets\\_Script\\PlacementSystem.cs",
+              "RelativeToolTip": "Assets\\_Script\\PlacementSystem.cs",
+              "ViewState": "AQIAAMkAAAAAAAAAAAAqwOoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-27T00:16:46.283Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PlacementState.cs",
+              "DocumentMoniker": "C:\\Users\\mazza\\OneDrive\\Escritorio\\mozo\\Restaurante\\Assets\\_Script\\PlacementState.cs",
+              "RelativeDocumentMoniker": "Assets\\_Script\\PlacementState.cs",
+              "ToolTip": "C:\\Users\\mazza\\OneDrive\\Escritorio\\mozo\\Restaurante\\Assets\\_Script\\PlacementState.cs",
+              "RelativeToolTip": "Assets\\_Script\\PlacementState.cs",
+              "ViewState": "AQIAABgAAAAAAAAAAAAUwDoAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-27T00:14:57.016Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GridData.cs",
+              "DocumentMoniker": "C:\\Users\\mazza\\OneDrive\\Escritorio\\mozo\\Restaurante\\Assets\\_Script\\GridData.cs",
+              "RelativeDocumentMoniker": "Assets\\_Script\\GridData.cs",
+              "ToolTip": "C:\\Users\\mazza\\OneDrive\\Escritorio\\mozo\\Restaurante\\Assets\\_Script\\GridData.cs",
+              "RelativeToolTip": "Assets\\_Script\\GridData.cs",
+              "ViewState": "AQIAABgAAAAAAAAAAAAowAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-27T00:13:02.998Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SaveLoadManager.cs",
+              "DocumentMoniker": "C:\\Users\\mazza\\OneDrive\\Escritorio\\mozo\\Restaurante\\Assets\\_Script\\DataPersistence\\SaveLoadManager.cs",
+              "RelativeDocumentMoniker": "Assets\\_Script\\DataPersistence\\SaveLoadManager.cs",
+              "ToolTip": "C:\\Users\\mazza\\OneDrive\\Escritorio\\mozo\\Restaurante\\Assets\\_Script\\DataPersistence\\SaveLoadManager.cs",
+              "RelativeToolTip": "Assets\\_Script\\DataPersistence\\SaveLoadManager.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-27T00:09:58.235Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

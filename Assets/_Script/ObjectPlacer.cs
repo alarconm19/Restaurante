@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 [Serializable]
 public class ObjectPlacer : MonoBehaviour
 {
@@ -16,6 +15,21 @@ public class ObjectPlacer : MonoBehaviour
     {
         GameObject newObject = Instantiate(prefab);
         newObject.transform.position = position;
+
+        // Asegurarse de que el objeto tiene un Renderer
+        Renderer renderer = newObject.GetComponent<Renderer>();
+        if (renderer == null)
+        {
+            renderer = newObject.AddComponent<Renderer>();
+        }
+
+        // Agregar el componente ObjectColorChanger
+        ObjectColorChanger colorChanger = newObject.GetComponent<ObjectColorChanger>();
+        if (colorChanger == null)
+        {
+            newObject.AddComponent<ObjectColorChanger>();
+        }
+
         placedGameObjects.Add(newObject);
 
         // Guardar los datos del objeto colocado
@@ -28,6 +42,21 @@ public class ObjectPlacer : MonoBehaviour
     {
         GameObject newObject = Instantiate(prefab);
         newObject.transform.position = position;
+
+        // Asegurarse de que el objeto tiene un Renderer
+        Renderer renderer = newObject.GetComponent<Renderer>();
+        if (renderer == null)
+        {
+            renderer = newObject.AddComponent<Renderer>();
+        }
+
+        // Agregar el componente ObjectColorChanger
+        ObjectColorChanger colorChanger = newObject.GetComponent<ObjectColorChanger>();
+        if (colorChanger == null)
+        {
+            newObject.AddComponent<ObjectColorChanger>();
+        }
+
         placedGameObjects.Add(newObject);
 
         return placedGameObjects.Count - 1;
