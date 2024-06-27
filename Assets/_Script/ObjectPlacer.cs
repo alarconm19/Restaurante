@@ -26,29 +26,21 @@ public class ObjectPlacer : MonoBehaviour
 
         if(prefab.name.Contains("TableRectangularParentV2") || prefab.name.Contains("RoundTableParentV2"))
         {
-            // Buscar el objeto "plano" y obtener su Renderer
-            var planoTransform = newObject.transform.Find("Plane");
-            if (planoTransform != null)
+            var cube = newObject.transform.Find(prefab.name.Contains("TableRectangularParentV2") ? "Cube" : "Cylinder");
+            if (cube != null)
             {
                 // Asegurarse de que el objeto tiene un Renderer
-                if (!newObject.TryGetComponent<Renderer>(out _))
+                if (!cube.TryGetComponent<Renderer>(out _))
                 {
-                    newObject.AddComponent<Renderer>();
+                    _ = cube.gameObject.AddComponent<Renderer>();
                 }
 
                 // Agregar el componente ObjectColorChanger
-                if (!newObject.TryGetComponent<ObjectColorChanger>(out _))
+                if (!cube.TryGetComponent<ObjectColorChanger>(out _))
                 {
-                    newObject.AddComponent<ObjectColorChanger>();
+                    _ = cube.gameObject.AddComponent<ObjectColorChanger>();
                 }
-
-                //_ = newObject.AddComponent<ObjectColorChanger>();
             }
-            else
-            {
-                Debug.LogError("GameObject 'plano' not found.");
-            }
-
 
             // Buscar el objeto "numero" dentro del prefab instanciado
             var numeroTransform = newObject.transform.Find("Numero");
@@ -123,7 +115,6 @@ public class ObjectPlacer : MonoBehaviour
         // También remover los datos
         placedObjectDataList[gameObjectIndex] = null;
 
-        contMesas--;
     }
 
     public void LoadPlacedObjects()

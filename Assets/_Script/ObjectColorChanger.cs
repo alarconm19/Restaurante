@@ -8,18 +8,13 @@ public class ObjectColorChanger : MonoBehaviour
 
     private void Start()
     {
-        var planoTransform = transform.Find("Plane");
-        if (planoTransform != null)
+        // Busca el Renderer en este objeto o en sus hijos
+        objectRenderer = GetComponentInChildren<Renderer>();
+        if (objectRenderer == null)
         {
-            if (!TryGetComponent(out objectRenderer))
-            {
-                Debug.LogError("Renderer component not found on this game object.");
-            }
+            Debug.LogError("Renderer component not found on this game object or its children.");
         }
-        else
-        {
-            Debug.LogError("GameObject 'plano' not found.");
-        }
+
     }
 
     private void OnMouseDown()

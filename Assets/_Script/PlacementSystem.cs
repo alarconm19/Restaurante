@@ -117,7 +117,7 @@ public class PlacementSystem : MonoBehaviour
 
     public int GetTablesCount()
     {
-        return objectPlacer.placedObjectDataList == null ? 0 : objectPlacer.placedObjectDataList.Where(pGB => pGB.prefabName == "TableParentV2" || pGB.prefabName == "RoundTableParentV2").Count();
+        return objectPlacer.placedObjectDataList == null ? 0 : objectPlacer.placedObjectDataList.Where(pGB => pGB.prefabName == "TableRectangularParentV2" || pGB.prefabName == "RoundTableParentV2").Count();
     }
 
     public string ToJson()
@@ -133,11 +133,6 @@ public class PlacementSystem : MonoBehaviour
             furnitureData = furnitureData.SerializableDictionary,
             objectPlacer = objectPlacer.placedObjectDataList,
         };
-
-        foreach (var furniture in furnitureData.PlacedObjects)
-        {
-            Debug.Log(furniture.Value);
-        }
 
         return JsonUtility.ToJson(data, true);
     }
